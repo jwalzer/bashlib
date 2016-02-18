@@ -11,7 +11,7 @@ DEBUG "Loading ${BASH_SOURCE[0]}"
 
 GET_MODULES() {
 	DEBUG
-	find "$MODULES_DIR" -maxdepth 1 -name "*.bash" -exec basename {} .bash \;
+	find "$MODULES_DIR" -maxdepth 1 -name "*.bash" -exec basename {} .bash \; || ERR "Can't find Modules"
 }
 
 LOAD_MODULE() {
