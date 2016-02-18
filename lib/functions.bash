@@ -1,6 +1,5 @@
 [ "$INCLUDED_FUNCTIONS" == "$RUNTOKEN" ] && return
 INCLUDED_FUNCTIONS="$RUNTOKEN"
-
 INCLUDE "logging"
 DEBUG "Loading ${BASH_SOURCE[0]}"
 
@@ -53,4 +52,24 @@ SLEEP() {
 			echo -n .
 		done
 	echo
+}
+
+LIB_DIRS="$LIBDIR"
+LIBDIR_ADD() {
+	STR_CONTAINS "$1" "$LIB_DIRS" || LIB_DIRS=" $1 $LIB_DIRS"
+}
+
+INCLUDE() {
+#	BASHLIB_DEBUG="TRUE"
+	DEBUG "$*"
+	for LIBD in  $LIB_DIRS
+		do
+			if [ -r "$LIBD/${1}.bash" ]
+				then
+					DEBUG "Loading $1 from $LIBD"
+					. "$LIBD/${1}.bash" || FAIL 1 "Major Failure, loading $1"
+					return 0
+				fi
+		done
+	FAIL 1 "can't find '$1' or not readable"
 }
