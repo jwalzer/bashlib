@@ -7,10 +7,16 @@ __TOKEN__="$$"
 RUNTOKEN="$__TOKEN__"
 INCLUDED_INIT="$RUNTOKEN"
 
+
+#
+# This is just a minimal bootstrapping version of INCLUDE()
+# It will be overwritten by a version from functions.bash which
+# is more sophisticated
+#
 INCLUDE() {
-	if [ -r "$LIBDIR/${1}.bash" ] 
+	if [ -r "$LIBDIR/${1}.bash" ]
 		then
-		 . "$LIBDIR/${1}.bash" 
+		 . "$LIBDIR/${1}.bash"
 		 [[ "$?" -eq 0 ]] || echo "Major Failure, loading $1"
 		 [[ "$?" -eq 0 ]] || exit 1
 		else
