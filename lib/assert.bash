@@ -7,7 +7,11 @@ INCLUDE "functions"
 DEBUG "Loading ${BASH_SOURCE[0]}"
 
 ASSERT_LOG() {
-	LOG "[ASSERT][<${FUNCNAME[2]}()>${BASH_SOURCE[2]}:${BASH_LINENO[2]}] Failed: $*"
+	LOG "[ASSERT][<${FUNCNAME[2]}()>${BASH_SOURCE[2]}:${BASH_LINENO[2]}] Assertion Failed: $*"
+}
+
+ASSERT_ISINTEGER() {
+	[[ "$*" -eq "$*" ]] || ( ASSERT_LOG "Is Integer: $*" ; return 1 )
 }
 
 ASSERT_EQ() {
@@ -41,3 +45,15 @@ ASSERT_EMPTY() {
 ASSERT_NOTEMPTY() {
 	[[ -n "$*" ]] || ( ASSERT_LOG "String Empty" ; return 1 )
 }
+
+ASSERT_FILE() {
+	ASSERT_NOTEMPTY "$*" || return 1
+	[[ -e "$*" ]] || ( ASSERT_LOG "No File: $1" ; return 1 )
+}
+
+ASSERT_EXEC() {
+	ASSERT_FILE "$*" || return 1
+	[[ -x "$*" ]] || ( ASSERT_LOG "No File: $1" ; return 1 )
+}
+
+
