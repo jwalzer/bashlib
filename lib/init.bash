@@ -1,6 +1,7 @@
 export LC_ALL='C'
 
-LIBDIR="/usr/local/lib/bashlib"
+BASHLIB_DIR="$(dirname "${BASH_SOURCE[0]}")"
+LIBDIR="$BASHLIB_DIR"
 
 __TOKEN__="$$"
 [ "$INCLUDED_INIT" == "$__TOKEN__" ] && return
