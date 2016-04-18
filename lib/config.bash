@@ -8,6 +8,7 @@ DEBUG "Loading ${BASH_SOURCE[0]}"
 
 CONFIG_TRY_LOAD()
 	{
+		DEBUG "Trying Load: $1"
 		while [[ -n "$1" ]]
 			do
 				DEBUG "Trying Load: $1"
