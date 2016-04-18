@@ -19,12 +19,12 @@ SUDO() {
 
 PREREQS_LOCAL_SUDO() {
 	PRQ "testing local sudo"
-	SUDO "echo successful sudo local" || return 1
+	SUDO "echo successful sudo local >/dev/null" || return 1
 }
 
 PREREQS_LOCAL_EXEC() {
 	PRQ "testing local exec"
-	EXEC "echo successful local" || return 1
+	EXEC "echo successful local >/dev/null" || return 1
 }
 
 PREREQ_REGISTER PREREQS_LOCAL_EXEC PREREQS_LOCAL_SUDO
