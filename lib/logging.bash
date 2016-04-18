@@ -1,7 +1,7 @@
 [ "$INCLUDED_LOGGING" == "$RUNTOKEN" ] && return
 INCLUDED_LOGGING="$RUNTOKEN"
 
-echo "Loading ${BASH_SOURCE[0]}" >&2
+echo "[DEBUG] Loading ${BASH_SOURCE[0]}" >&2
 LOGTIMESTAMPFMT="%s.%N"
 
 TS() {
