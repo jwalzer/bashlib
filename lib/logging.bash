@@ -19,6 +19,15 @@ DEBUG_STREAM() {
     	done
 }
 
+DEBUG_PIPE() {
+	local L
+	while read L
+		do
+			DEBUG "$L"
+			echo "$L"
+		done
+}
+
 PRQ() {
 	DEBUG "[PREREQ] $*"
 }
