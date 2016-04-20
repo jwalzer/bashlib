@@ -4,13 +4,15 @@ INCLUDE "logging"
 DEBUG "Loading ${BASH_SOURCE[0]}"
 
 FAIL() {
+	ERRCODE=$1
+	shift
 	ERR_STREAM <<EOT
 
 ========= ERROR =========
 $*
 EOT
 
-	exit "$1"
+	exit "$ERRCODE"
 }
 
 STR_CONTAINS() {
