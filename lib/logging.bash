@@ -13,17 +13,19 @@ DEBUG() {
 }
 
 DEBUG_STREAM() {
+	[[ -n "$1" ]] && T="[$@]"
 	while read L
 		do
-    		DEBUG "$L"
+    		DEBUG "$T$L"
     	done
 }
 
 DEBUG_PIPE() {
+	[[ -n "$1" ]] && T="[$@]"
 	local L
 	while read L
 		do
-			DEBUG "$L"
+			DEBUG "$T$L"
 			echo "$L"
 		done
 }
@@ -44,9 +46,10 @@ ERR() {
 }
 
 ERR_STREAM() {
+	[[ -n "$1" ]] && T="[$@]"
 		while read L
 			do
-        		ERR_MSG "$L"
+        		ERR_MSG "$T$L"
         	done
         ERR_MSG "Stacktrace follows"
         GET_STACKTRACE > /dev/stderr
@@ -93,8 +96,9 @@ LOGN() {
 
 
 LOG_STREAM() {
+	[[ -n "$1" ]] && T="[$@]"
 	while read L
 		do
-    		LOG "$L"
+    		LOG "$T$L"
     	done
 }
