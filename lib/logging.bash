@@ -9,7 +9,7 @@ TS() {
 }
 
 DEBUG() {
-    [[ -n "$BASHLIB_DEBUG" ]] && echo "[$(TS)]$(GET_STACKSTR) $*"  > /dev/stderr
+    [[ -n "$BASHLIB_DEBUG" ]] && echo "[$(TS)][$BASHPID]$(GET_STACKSTR) $*"  > /dev/stderr
 }
 
 DEBUG_STREAM() {
@@ -35,7 +35,7 @@ PRQ() {
 }
 
 ERR_MSG() {
-        echo "[ERROR] $*"  > /dev/stderr
+        echo "[$(TS)][$BASHPID][ERROR] $*"  > /dev/stderr
 }
 
 ERR() {
